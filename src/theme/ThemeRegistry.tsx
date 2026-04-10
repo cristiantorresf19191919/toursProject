@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useMemo, useState, useEffect } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import { MotionConfig } from 'framer-motion';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import getTheme from './theme';
