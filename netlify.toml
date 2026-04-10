@@ -4,19 +4,11 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  NEXT_USE_NETLIFY_EDGE = "true"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Redirects for SPA
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Role = ["admin"]}
-
-# Headers for performance
+# Headers for performance & security
 [[headers]]
   for = "/*"
   [headers.values]
