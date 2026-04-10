@@ -20,6 +20,7 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import FAQSection from '@/components/sections/FAQSection';
 import NewsletterSection from '@/components/sections/NewsletterSection';
 import ContactTeaserSection from '@/components/sections/ContactTeaserSection';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 
 export default function Home() {
   const pathname = usePathname();
@@ -54,6 +55,7 @@ export default function Home() {
       <NewsletterSection />
       <ContactTeaserSection />
       <Footer />
+      <ScrollToTop />
     </Box>
   );
 }

@@ -34,10 +34,11 @@ interface ExperienceCardProps {
   index: number;
 }
 
-export default function ExperienceCard({ experience, index }: ExperienceCardProps) {
+export default function ExperienceCard({ experience: rawExperience, index }: ExperienceCardProps) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
   const { locale, t } = useLanguage();
+  const experience = localizeExperience(rawExperience, locale);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-CO', {
@@ -139,7 +140,7 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
                     textAlign: 'center',
                   }}
                 >
-                  DESDE
+                  {t('price.from')}
                 </Typography>
                 <Typography
                   variant="subtitle1"

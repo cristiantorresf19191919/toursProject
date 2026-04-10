@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { Box, Container, Typography, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { stats } from '@/data/experiences';
+import { stats, localizeStat } from '@/data/experiences';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   const [count, setCount] = useState(0);
@@ -51,6 +52,7 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function StatsSection() {
   const theme = useTheme();
+  const { locale } = useLanguage();
 
   return (
     <Box
@@ -79,7 +81,9 @@ export default function StatsSection() {
             alignItems: 'start',
           }}
         >
-          {stats.map((stat, i) => (
+          {stats.map((rawStat, i) => {
+            const stat = localizeStat(rawStat, locale);
+            return (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -126,7 +130,8 @@ export default function StatsSection() {
                 </Typography>
               </Box>
             </motion.div>
-          ))}
+          );
+          })}
         </Box>
       </Container>
     </Box>

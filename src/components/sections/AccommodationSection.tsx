@@ -4,14 +4,14 @@ import React from 'react';
 import { Box, Container, Typography, Grid, Chip, Card, CardContent, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useScrollAnimation, fadeInUp, staggerContainer, staggerItem } from '@/hooks/useScrollAnimation';
-import { accommodations } from '@/data/experiences';
+import { accommodations, localizeAccommodation } from '@/data/experiences';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function AccommodationSection() {
   const { ref, controls } = useScrollAnimation();
   const theme = useTheme();
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
     <Box
@@ -56,7 +56,9 @@ export default function AccommodationSection() {
 
         <motion.div variants={staggerContainer} initial="hidden" animate={controls}>
           <Grid container spacing={3}>
-            {accommodations.map((acc, i) => (
+            {accommodations.map((rawAcc, i) => {
+              const acc = localizeAccommodation(rawAcc, locale);
+              return (
               <Grid size={{ xs: 12, sm: 6, md: i < 2 ? 6 : 4 }} key={acc.id}>
                 <motion.div variants={staggerItem}>
                   <Card
@@ -118,7 +120,8 @@ export default function AccommodationSection() {
                   </Card>
                 </motion.div>
               </Grid>
-            ))}
+              );
+            })}
           </Grid>
         </motion.div>
 
